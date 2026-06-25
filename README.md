@@ -40,7 +40,7 @@ Follow the steps below to install and run **EcoWatch AI** on your local system.
 Clone the project repository to your local machine:
 
 ```bash
-git clone github.com/shriprasadtingre/EcoWatch-AI
+git clone https://github.com/shriprasadtingre/EcoWatch-AI.git
 ```
 
 Move into the project directory:
