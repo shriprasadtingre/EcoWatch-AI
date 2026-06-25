@@ -1,12 +1,12 @@
 import streamlit as st
 import pandas as pd
 
-from chatbot.assistant import (
-    environmental_chat
+from chatbot.gemini_bot import (
+    ask_environment_ai
 )
 
 st.header(
-    "AI Assistant"
+    "EcoWatch AI Assistant"
 )
 
 df = pd.read_csv(
@@ -16,14 +16,24 @@ df = pd.read_csv(
 latest = df.iloc[-1]
 
 question = st.text_input(
-    "Ask"
+    "Ask about environment"
 )
 
-if question:
+if st.button(
+    "Analyze"
+):
 
-    st.write(
-        environmental_chat(
-            question,
-            latest
+    if question:
+
+        with st.spinner(
+            "Thinking..."
+        ):
+
+            result = ask_environment_ai(
+                question,
+                latest
+            )
+
+        st.write(
+            result
         )
-    )
