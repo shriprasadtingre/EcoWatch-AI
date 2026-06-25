@@ -31,134 +31,295 @@ EcoWatch AI provides:
 ✓ Environmental trend forecasting  
 ✓ AI-based environmental assistant  
 
-Installation & Setup
-Step 1 — Clone Repository
+# Installation & Setup
+
+Follow the steps below to install and run **EcoWatch AI** on your local system.
+
+## Step 1 — Clone the Repository
+
+Clone the project repository to your local machine:
+
+```bash
 git clone YOUR_REPOSITORY_LINK
+```
 
-Move into project:
+Move into the project directory:
 
+```bash
 cd EcoWatch_AI
-Step 2 — Create Virtual Environment
+```
 
-Windows:
+---
 
+## Step 2 — Create a Virtual Environment
+
+It is recommended to use a virtual environment to isolate project dependencies.
+
+Create the environment:
+
+```bash
 python -m venv venv
+```
 
-Activate:
+Activate the environment:
 
-PowerShell:
+### Windows PowerShell
 
+```powershell
 .\venv\Scripts\Activate
+```
 
-CMD:
+### Windows Command Prompt (CMD)
 
+```cmd
 venv\Scripts\activate
-Step 3 — Install Requirements
+```
+
+Once activated, your terminal should display:
+
+```text
+(venv)
+```
+
+---
+
+## Step 3 — Install Project Dependencies
+
+Install all required packages:
+
+```bash
 pip install -r requirements.txt
+```
 
-Verify installation:
+Verify successful installation:
 
+```bash
 pip list
-Step 4 — Configure AI (Optional)
+```
 
-Create:
+---
 
+## Step 4 — Configure AI Integration (Optional)
+
+EcoWatch AI supports Generative AI integration using Gemini API.
+
+Create a file named:
+
+```text
 .env
+```
 
-Add:
+Add your API key:
 
+```env
 GEMINI_API_KEY=YOUR_API_KEY
+```
 
-Do not upload .env.
+Example:
 
-How To Run
+```env
+GEMINI_API_KEY=AIza...
+```
 
-Collect environmental data:
+Important:
 
+* Keep API keys private.
+* Do not upload `.env` files to GitHub.
+* Ensure `.env` is included in `.gitignore`.
+
+---
+
+# Running the Application
+
+## Step 1 — Generate Environmental Data
+
+Run the data collection module to create environmental records:
+
+```bash
 python scripts/collect_data.py
+```
 
-Start application:
+Running this command multiple times generates additional environmental samples used for analysis and forecasting.
 
+---
+
+## Step 2 — Launch the Dashboard
+
+Start the Streamlit application:
+
+```bash
 streamlit run app.py
+```
 
-Open:
+After execution, open:
 
+```text
 http://localhost:8501
-How To Use
-Step 1
+```
 
-Launch EcoWatch AI.
+Your browser will launch the EcoWatch AI dashboard.
 
-Step 2
+---
 
-Generate environmental data.
+# How to Use EcoWatch AI
 
-Step 3
+## 1. Start the Application
 
-Open dashboard.
+Launch the Streamlit dashboard.
 
-Step 4
+---
 
-Observe:
+## 2. Generate Environmental Records
 
-Environmental Health Index
-Hazard predictions
-Forecast graph
-Step 5
+Execute:
 
-Use AI assistant to ask questions.
+```bash
+python scripts/collect_data.py
+```
 
-Examples:
+to generate environmental observations.
 
+---
+
+## 3. Explore Dashboard Insights
+
+The dashboard provides:
+
+* Environmental Health Index (EHI)
+* Heatwave Risk Prediction
+* Pollution Risk Prediction
+* Environmental Trend Forecasts
+
+---
+
+## 4. Use the AI Environmental Assistant
+
+Navigate to the assistant section and ask environment-related questions.
+
+Example queries:
+
+```text
 Why is pollution increasing?
 
-How dangerous is current AQI?
+How dangerous is the current AQI?
 
 How can environmental conditions improve?
-Technology Stack
 
-Frontend:
+What environmental risks may occur in the coming days?
+```
 
-Streamlit
+The assistant will generate contextual analysis and recommendations.
 
-Backend:
+---
 
-Python
+# Technology Stack
 
-Libraries:
+## Frontend
 
-Pandas
-NumPy
-Matplotlib
-Scikit-learn
-Prophet
-Requests
-Python-dotenv
-Google Generative AI (Optional)
+Responsible for application interface and visualization.
 
-Version Control:
+* Streamlit
 
-Git
-GitHub
-Project Structure
+---
+
+## Backend
+
+Responsible for application logic and data processing.
+
+* Python
+
+---
+
+## Core Libraries
+
+### Data Processing
+
+* Pandas
+* NumPy
+
+### Data Visualization
+
+* Matplotlib
+
+### Machine Learning & Prediction
+
+* Scikit-learn
+* Prophet
+
+### API & Environment Management
+
+* Requests
+* Python-dotenv
+
+### Artificial Intelligence
+
+* Google Generative AI (Gemini API) *(Optional Integration)*
+
+---
+
+## Version Control
+
+Used for source code management and collaboration.
+
+* Git
+* GitHub
+
+---
+
+# Project Structure
+
+```plaintext
 EcoWatch_AI/
 
-├── app.py
-├── chatbot/
-├── dashboard/
-├── prediction/
-├── scripts/
+├── app.py                      # Main application entry point
+
+├── chatbot/                    # AI assistant modules
+│   ├── assistant.py
+│   └── gemini_bot.py
+
+├── dashboard/                  # Streamlit dashboard components
+│   ├── home.py
+│   ├── forecast.py
+│   └── assistant.py
+
+├── prediction/                 # Prediction modules
+│   ├── health_index.py
+│   ├── hazard_predictor.py
+│   └── forecast.py
+
+├── scripts/                    # Data collection scripts
+│   └── collect_data.py
+
 ├── data/
-├── requirements.txt
-├── README.md
-├── .env
-└── .gitignore
-Example Output
-Environmental Health Index: 76
+│   ├── raw/                    # Generated environmental records
+│   └── processed/
 
-Heatwave Risk: Medium
+├── requirements.txt            # Dependency list
+├── README.md                   # Project documentation
+├── .env                        # Environment variables
+└── .gitignore                  # Ignored files
+```
 
-Pollution Risk: Low
+---
+
+# Example Output
+
+```text
+Environmental Health Index (EHI): 76
+
+Environmental Status:
+Good
+
+Heatwave Risk:
+Medium
+
+Pollution Risk:
+Low
+
+AI Recommendation:
+Reduce prolonged outdoor exposure and monitor AQI changes regularly.
+```
+
 
 Recommendation:
 Reduce outdoor exposure.
