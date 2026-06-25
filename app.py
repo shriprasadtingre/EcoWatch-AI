@@ -11,6 +11,10 @@ from prediction.forecast import (
     forecast_next_days
 )
 
+from chatbot.assistant import (
+    environmental_chat
+)
+
 st.title("EcoWatch AI")
 
 try:
@@ -101,6 +105,23 @@ try:
         )
 
     st.subheader(
+        "AI Environmental Assistant"
+    )
+
+    question = st.text_input(
+        "Ask about environment"
+    )
+
+    if question:
+
+        reply = environmental_chat(
+            question,
+            latest
+        )
+
+        st.write(reply)
+
+    st.subheader(
         "Collected Data"
     )
 
@@ -108,4 +129,6 @@ try:
 
 except Exception as e:
 
-    st.error(str(e))
+    st.error(
+        f"Error: {e}"
+    )
