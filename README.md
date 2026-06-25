@@ -2,48 +2,44 @@
 
 AI-powered Environmental Health Monitoring and Hazard Prediction System.
 
-## Overview
+## Features
 
-EcoWatch AI monitors environmental conditions and predicts future environmental risks.
-
-Features:
-- Environmental Health Index (EHI)
+- Environmental Health Index
 - Heatwave Prediction
 - Pollution Prediction
 - AI Environmental Assistant
-- Future Trend Forecasting
+- Trend Forecasting
 
-## Tech Stack
+## Setup
 
-- Python
-- Streamlit
-- Scikit-learn
-- Pandas
-- Prophet
-
-## Project Structure
+Create environment:
 
 ```bash
-data/
-models/
-prediction/
-dashboard/
-chatbot/
+python -m venv venv
 ```
 
-## Installation
+Activate:
+
+```bash
+venv\Scripts\activate
+```
+
+Install:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Run
+Run:
 
 ```bash
 streamlit run app.py
 ```
 
-## Status
+## Structure
 
-Project Initialization
-```
+data/
+models/
+prediction/
+chatbot/
+dashboard/
