@@ -7,6 +7,10 @@ from prediction.hazard_predictor import (
     predict_pollution
 )
 
+from prediction.forecast import (
+    forecast_next_days
+)
+
 st.title("EcoWatch AI")
 
 try:
@@ -15,9 +19,27 @@ try:
         "data/raw/environment_data.csv"
     )
 
+    scores = []
+
+    for _, row in df.iterrows():
+
+        score, _ = calculate_ehi(
+            row["temperature"],
+            row["humidity"],
+            row["wind_speed"],
+            row["aqi"],
+            row["pm25"]
+        )
+
+        scores.append(score)
+
+    df["ehi"] = scores
+
     latest = df.iloc[-1]
 
-    score, status = calculate_ehi(
+    score = latest["ehi"]
+
+    _, status = calculate_ehi(
         latest["temperature"],
         latest["humidity"],
         latest["wind_speed"],
@@ -44,7 +66,9 @@ try:
         f"Status: {status}"
     )
 
-    st.subheader("Hazard Prediction")
+    st.subheader(
+        "Hazard Prediction"
+    )
 
     st.write(
         f"Heatwave Risk: {heatwave}"
@@ -54,12 +78,34 @@ try:
         f"Pollution Risk: {pollution}"
     )
 
-    st.subheader("Collected Data")
+    st.subheader(
+        "Future EHI Forecast"
+    )
+
+    forecast = forecast_next_days(
+        df,
+        "ehi",
+        7
+    )
+
+    if forecast is not None:
+
+        st.line_chart(
+            forecast.set_index(
+                "Day"
+            )
+        )
+
+        st.dataframe(
+            forecast
+        )
+
+    st.subheader(
+        "Collected Data"
+    )
 
     st.dataframe(df)
 
 except Exception as e:
 
-    st.warning(
-        "Collect environmental data first"
-    )
+    st.error(str(e))
